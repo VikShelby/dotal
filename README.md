@@ -100,7 +100,7 @@ To execute a DOTAL script (files should end in `.al`), simply pass the file path
 
 ### Windows Installer
 
-A pre-compiled installer for Windows is available in the [Releases]([Link to your GitHub Releases page]) section. The installer will automatically add `dotal` to your PATH and associate `.al` files with a custom icon.
+A pre-compiled installer for Windows is available in the [Releases](https://github.com/VikShelby/dotal-lang/releases) section. The installer will automatically add `dotal` to your PATH and associate `.al` files with a custom icon.
 
 ---
 
