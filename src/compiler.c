@@ -1423,9 +1423,7 @@ static void declaration() {
 //< Classes and Instances match-class
 //> Calls and Functions match-fun
     funDeclaration();
-/* Global Variables match-var < Calls and Functions match-fun
-  if (match(TOKEN_VAR)) {
-*/
+
   } else if (match(TOKEN_VAR)) {
 //< Calls and Functions match-fun
 //> match-var
@@ -1433,56 +1431,29 @@ static void declaration() {
   } else {
     statement();
   }
-//< match-var
-/* Global Variables declaration < Global Variables match-var
-  statement();
-*/
-//> call-synchronize
-
   if (parser.panicMode) synchronize();
-//< call-synchronize
 }
-//< Global Variables declaration
-//> Global Variables statement
 static void statement() {
   if (match(TOKEN_PRINT)) {
     printStatement();
-//> Jumping Back and Forth parse-for
   } else if (match(TOKEN_FOR)) {
     forStatement();
-//< Jumping Back and Forth parse-for
-//> Jumping Back and Forth parse-if
   } else if (match(TOKEN_IF)) {
     ifStatement();
-//< Jumping Back and Forth parse-if
-//> Calls and Functions match-return
   } else if (match(TOKEN_RETURN)) {
     returnStatement();
-//< Calls and Functions match-return
-//> Jumping Back and Forth parse-while
   } else if (match(TOKEN_WHILE)) {
     whileStatement();
-//< Jumping Back and Forth parse-while
-//> Local Variables parse-block
   } else if (match(TOKEN_LEFT_BRACE)) {
     beginScope();
     block();
     endScope();
-//< Local Variables parse-block
-//> parse-expressions-statement
   } else {
     expressionStatement();
-//< parse-expressions-statement
+
   }
 }
-//< Global Variables statement
 
-/* Scanning on Demand compiler-c < Compiling Expressions compile-signature
-void compile(const char* source) {
-*/
-/* Compiling Expressions compile-signature < Calls and Functions compile-signature
-bool compile(const char* source, Chunk* chunk) {
-*/
 //> Calls and Functions compile-signature
 ObjFunction* compile(const char* source) {
 //< Calls and Functions compile-signature

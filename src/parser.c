@@ -1,6 +1,3 @@
-// =================================================================
-// ==  REPLACE THE ENTIRE CONTENTS OF src/parser.c WITH THIS CODE ==
-// =================================================================
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +6,8 @@
 #include "lexer.h"
 #include "ast.h"
 
-// At the top of src/parser.c, where the variable used to be:
-Parser parser; // The actual variable definition, without the 'extern'
+
+Parser parser;
 
 typedef enum {
     PREC_NONE,
@@ -99,11 +96,9 @@ static void error_at(Token* token, const char* message) {
     fprintf(stderr, "[line %d] Error at '%.*s': %s\n", token->line, token->length, token->start, message);
     parser.had_error = 1;
 }
-// In parser.c, add this new function
 static ASTNode* unary() {
     Token operator = parser.previous;
-    // To parse the operand, we recursively call parse_precedence
-    // with the precedence of a unary operator.
+    
     ASTNode* right = parse_precedence(PREC_UNARY);
     return create_unary_node(operator, right);
 }
@@ -123,14 +118,10 @@ void consume(TokenType type, const char* message) { if (check(type)) { advance()
 
 // --- Grammar Implementation ---
 static ASTNode* grouping() {
-    // The '(' has already been consumed.
-    // Now we parse the expression inside the parentheses.
+  
     ASTNode* expr = expression();
     
-    // After the expression, we must find a closing ')'.
     consume(TOKEN_RPAREN, "Expect ')' after expression.");
-    
-    // The result is just the expression that was inside.
     return expr;
 }
 static ASTNode* parse_precedence(Precedence precedence) {
@@ -194,8 +185,7 @@ static ASTNode* assignment(ASTNode* left) {
 static ASTNode* expression_statement() {
     ASTNode* expr = expression();
     consume(TOKEN_SEMICOLON, "Expect ';' after expression.");
-    // An assignment is an expression, but it's used as a statement here.
-    // So we wrap it, or just return it as is. Let's return as is.
+    
     return expr;
 }
 
@@ -283,46 +273,35 @@ static ASTNode* for_statement() {
     }
     consume(TOKEN_RPAREN, "Expect ')' after for clauses.");
 
-    // 4. Parse the Body
     consume(TOKEN_LBRACE, "Expect '{' before per body.");
     ASTNode* body = block();
 
-    // --- 5. De-sugaring: Build the While Loop AST ---
-
-    // If there's an increment, add it to the end of the main body block.
     if (increment != NULL) {
-        // The body must be a ProgramNode (a block) because we created it with block()
+        
         add_statement_to_program((ProgramNode*)body, increment);
     }
 
-    // If there's no condition, make it 'vertete' to loop forever.
     if (condition == NULL) {
-        // We simulate a 'true' literal by creating a literal node with the 'vertete' token
-        Token true_token = {.type = TOKEN_TRUE}; // A synthetic token
+       
+        Token true_token = {.type = TOKEN_TRUE}; 
         condition = create_literal_node(true_token);
     }
     
-    // Create the main 'derisa' (while) loop.
     ASTNode* while_loop = create_while_node(condition, body);
 
-    // If there was an initializer, wrap the while loop in a new block with it.
+   
     if (initializer != NULL) {
         ProgramNode* outer_block = (ProgramNode*)create_program_node();
         add_statement_to_program(outer_block, initializer);
         add_statement_to_program(outer_block, while_loop);
         return (ASTNode*)outer_block;
     }
-
-    // If no initializer, just return the while loop itself.
     return while_loop;
 }
-// REPLACE the function_declaration function
 static ASTNode* function_declaration() {
     consume(TOKEN_IDENTIFIER, "Expect function name.");
     Token name = parser.previous;
     consume(TOKEN_LPAREN, "Expect '(' after function name.");
-  // In src/parser.c -> function_declaration
-// ... after consume(TOKEN_LPAREN, ...);
 
 
 Token* params = NULL;

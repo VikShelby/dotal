@@ -31,12 +31,7 @@ void freeChunk(Chunk* chunk) {
 //< chunk-free-constants
   initChunk(chunk);
 }
-//< free-chunk
-/* Chunks of Bytecode write-chunk < Chunks of Bytecode write-chunk-with-line
-void writeChunk(Chunk* chunk, uint8_t byte) {
-*/
-//> write-chunk
-//> write-chunk-with-line
+
 void writeChunk(Chunk* chunk, uint8_t byte, int line) {
 //< write-chunk-with-line
   if (chunk->capacity < chunk->count + 1) {

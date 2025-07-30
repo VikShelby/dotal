@@ -1,18 +1,18 @@
 funksion pershendetje(emer) {
   # NUK MUND TE PERDORIM STRING CONCATENATION AKOMA
-  shkruaj "Pershendetje, ";
-  shkruaj emer;
+  printo "Pershendetje, ";
+  printo emer;
 }
 
 funksion mblidh(a, b) {
   kthe a + b;
 }
 
-shkruaj "Duke thirrur funksionet...";
+printo "Duke thirrur funksionet...";
 
 pershendetje("Gjergj");
-variabel shuma = mblidh(100, 23);
-shkruaj "100 + 23 eshte:";
-shkruaj shuma;
+shpall shuma = mblidh(100, 23);
+printo "100 + 23 eshte:";
+printo shuma;
 
-shkruaj mblidh(shuma, shuma);
+printo mblidh(shuma, shuma);

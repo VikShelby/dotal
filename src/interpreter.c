@@ -1,6 +1,3 @@
-// ===================================================================
-// == REPLACE THE ENTIRE CONTENTS OF src/interpreter.c WITH THIS CODE ==
-// ===================================================================
 
 #include <stdio.h>
 #include <stdlib.h>

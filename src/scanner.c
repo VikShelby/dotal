@@ -119,19 +119,6 @@ static TokenType checkKeyword(int start, int length,
 
   return TOKEN_IDENTIFIER;
 }
-//< check-keyword
-//> identifier-type
-// ===================================================================
-// ==   REPLACE THIS ENTIRE FUNCTION IN src/scanner.c               ==
-// ===================================================================
-
-// ===================================================================
-// ==   REPLACE THIS ENTIRE FUNCTION IN src/scanner.c               ==
-// ===================================================================
-
-// ===================================================================
-// ==   REPLACE THIS FUNCTION IN YOUR NEW, CLEAN src/scanner.c      ==
-// ===================================================================
 
 static TokenType identifierType() {
   switch (scanner.start[0]) {

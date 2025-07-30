@@ -171,14 +171,13 @@ void free_ast(ASTNode* node) {
             free_ast(while_stmt->body);
             break;
         }
-        // --- ADD THIS NEW CASE ---
 case NODE_ASSIGN_EXPRESSION: {
     AssignNode* assign_expr = (AssignNode*)node;
     free_ast(assign_expr->value);
     break;
 }   case NODE_FUNCTION_DECLARATION: {
             FunctionDeclNode* func = (FunctionDeclNode*)node;
-            // The params tokens are owned by the parser, not freed here
+         
             free(func->params);
             free_ast(func->body);
             break;
@@ -199,7 +198,7 @@ case NODE_ASSIGN_EXPRESSION: {
         }
         case NODE_VARIABLE_EXPRESSION:
         case NODE_LITERAL:
-            break; // These nodes have no children to free
+            break;
     }
     free(node);
 }

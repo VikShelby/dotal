@@ -69,7 +69,7 @@ tip Kafe < Pije {
 shpall porosia_ime = Kafe();
 porosia_ime.servir();
 ```
-> [See more examples here!]([Link to your examples folder on GitHub])
+> [See more examples here!](https://github.com/VikShelby/dotal/tree/main/examples)
 
 ---
 
@@ -81,7 +81,7 @@ DOTAL is written in standard C99 and can be compiled with GCC or Clang. No exter
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/dotal-lang.git
+git clone https://github.com/VikShelby/dotal.git
 cd dotal-lang
 
 # Compile the source code

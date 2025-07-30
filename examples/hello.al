@@ -1,2 +1,2 @@
-shpall x = 10;
-shpall y = 20;
+shpall HelloWorld = "Hello World"
+printo HelloWorld
